@@ -8,17 +8,15 @@
 
 ### 快速部署脚本
 
-*对于技术知识了解不多的选手，如果你看不懂下面的内容，可以看我之前写的博客文章[《一行命令部署自己的ChatGPT客户端》](https://wongsnotes.com/p/deploying-your-own-chatgpt-client-with-one-line-of-command/)*
+_对于技术知识了解不多的选手，如果你看不懂下面的内容，可以看我之前写的博客文章[《一行命令部署自己的ChatGPT客户端》](https://wongsnotes.com/p/deploying-your-own-chatgpt-client-with-one-line-of-command/)_
 
 **注意：此脚本目前仅在 Ubuntu Server 22.04 LTS 上验证过。**
-
 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/WongSaang/chatgpt-ui/main/deployment.sh)
 ```
 
 ### Docker Compose
-
 
 #### 准备 docker-compose.yml
 
@@ -37,6 +35,7 @@ services:
     image: wongsaang/chatgpt-ui-client:latest
     environment:
       - SERVER_DOMAIN=http://backend-web-server
+      - DEFAULT_LOCALE=zh
     #      - NUXT_PUBLIC_APP_NAME='ChatGPT UI' # APP 名称
     #      - NUXT_PUBLIC_TYPEWRITER=true # 是否开启 打字机 效果
     #      - NUXT_PUBLIC_TYPEWRITER_DELAY=50 # 打字机效果的延迟时间，单位：毫秒，默认：50
@@ -94,10 +93,9 @@ docker-compose up --pull always -d
 
 这个命令用于启动 Docker Compose 配置中的服务。具体的参数含义如下：
 
-- `up`：启动 Docker Compose 配置中的服务。
-- `--pull always`：每次启动服务前，都会从 Docker 镜像仓库中拉取最新版本的镜像。这样可以确保使用的镜像始终是最新的。
-- `-d`：在后台运行服务。如果不加这个参数，服务会在当前终端窗口中运行，直到用户手动停止服务。
-
+-   `up`：启动 Docker Compose 配置中的服务。
+-   `--pull always`：每次启动服务前，都会从 Docker 镜像仓库中拉取最新版本的镜像。这样可以确保使用的镜像始终是最新的。
+-   `-d`：在后台运行服务。如果不加这个参数，服务会在当前终端窗口中运行，直到用户手动停止服务。
 
 ## 部署完成之后
 
